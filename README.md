@@ -11,5 +11,5 @@
 ### Build
 ```mvn clean package```
 
-```java -jar -Dspring.profiles.active=dev gateway.jar```
-`java -jar -Dspring.profiles.active=local gateway.jar`
+```java -jar -Dspring.profiles.active=dev mayo-crud.jar```
+`java -jar -Dspring.profiles.active=local mayo-crud.jar`
