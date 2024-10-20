@@ -1,0 +1,40 @@
+server:
+  port: 9090
+
+security:
+  client-header: Client-Token
+  ignore-paths: /client, /version, /api/employees
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/crud?createDatabaseIfNotExist=true
+    username: manig
+    password: 9843
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 50MB
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 150000
+        response-timeout: 150000
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PATCH
+              - PUT
+              - DELETE
+      routes:
+        - id: apiVersion_route
+          uri: http://localhost:8080
+          predicates:
+            - Path=/version
+          filters:
+            - RewritePath=/version, /version
